@@ -1,59 +1,81 @@
-# PokemonSsr
+# Pokemon SSR
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.3.
+Aplicación web de Pokémon desarrollada con Angular y Server-Side Rendering (SSR) para mejorar SEO y rendimiento inicial.
 
-## Development server
+## Características
 
-To start a local development server, run:
+- Server-Side Rendering con Angular Universal
+- Navegación entre páginas de Pokémon
+- Optimizado para SEO
+- Interfaz adaptativa con TailwindCSS
+- Optimizaciones de rendimiento con Caddy Server
 
-```bash
-ng serve
-```
+## Requisitos previos
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+- Node.js 18.x o superior
+- npm 9.x o superior
+- Docker y Docker Compose (para despliegue)
 
-## Code scaffolding
+## Desarrollo local
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Para iniciar el servidor de desarrollo:
 
 ```bash
-ng generate --help
+npm install
+npm start
 ```
 
-## Building
+La aplicación estará disponible en `http://localhost:4200/` y se recargará automáticamente cuando modifiques los archivos fuente.
 
-To build the project run:
+## Servidor SSR en desarrollo
+
+Para probar el renderizado del lado del servidor durante el desarrollo:
 
 ```bash
-ng build
+npm run build
+npm run serve:ssr:pokemon-ssr
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+La aplicación estará disponible en `http://localhost:4000/`.
 
-## Running unit tests
+## Estructura del proyecto
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+El proyecto incluye:
+- Componentes de páginas en `src/app/pages/`
+- Componentes reutilizables de Pokémon en `src/app/pokemons/`
+- Servicios y modelos de datos en `src/app/pokemons/services/` e `interfaces/`
+
+## Despliegue con Docker
 
 ```bash
-ng test
+npm test
 ```
 
-## Running end-to-end tests
+## Despliegue con Docker
 
-For end-to-end (e2e) testing, run:
+El proyecto incluye configuración completa para despliegue con Docker:
 
 ```bash
-ng e2e
+# Construir y levantar los contenedores
+docker-compose up -d --build
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+La aplicación estará disponible en:
+- HTTP: `http://localhost:80/`
+- HTTPS: `https://localhost:443/` (con certificado autofirmado)
 
-## Additional Resources
+### Componentes del despliegue
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- **Aplicación Angular SSR**: Ejecutada en Node.js
+- **Servidor Caddy**: Proxy inverso con limitación de tasa, compresión y seguridad mejorada
+
+## Configuración de producción
+
+El archivo `docker-compose.yml` define dos servicios:
+
+- **app**: Contenedor para la aplicación Angular SSR
+- **caddy**: Proxy inverso y servidor web
+
+## Contribuciones
+
+Las contribuciones son bienvenidas. Por favor, crea un Pull Request o abre un Issue para discutir los cambios propuestos.
