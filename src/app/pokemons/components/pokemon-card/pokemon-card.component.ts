@@ -1,4 +1,4 @@
-import { Component, computed, effect, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { SimplePokemon } from '../../interfaces';
 import { RouterLink } from '@angular/router';
 
@@ -17,8 +17,4 @@ export class PokemonCardComponent {
         this.pokemon().id
       }.png`
   );
-
-  // logEffect = effect(() => {
-  //   console.log(this.pokemon());
-  // });
 }
