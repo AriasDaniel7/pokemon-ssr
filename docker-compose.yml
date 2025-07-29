@@ -1,0 +1,29 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    container_name: pokemon_app
+    ports:
+      - "4000:4000"
+    networks:
+      - pokemon-network
+
+  caddy:
+    build:
+      context: .
+      dockerfile: Dockerfile.caddy
+    restart: always
+    container_name: pokemon_caddy
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - app
+    networks:
+      - pokemon-network
+
+networks:
+  pokemon-network:
+    driver: bridge
