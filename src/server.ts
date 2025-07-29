@@ -12,7 +12,7 @@ const browserDistFolder = join(import.meta.dirname, '../browser');
 const app = express();
 
 // Eliminar cabeceras que revelan información sobre la tecnología del servidor
-app.disable('x-powered-by');
+// app.disable('x-powered-by');
 
 const angularApp = new AngularNodeAppEngine();
 
@@ -29,12 +29,12 @@ const angularApp = new AngularNodeAppEngine();
  */
 
 // Middleware para eliminar o modificar cabeceras adicionales
-app.use((req, res, next) => {
-  // Eliminar o reemplazar cabeceras que puedan mostrar información del servidor
-  res.removeHeader('Server');
-  res.removeHeader('X-Powered-By');
-  next();
-});
+// app.use((req, res, next) => {
+//   // Eliminar o reemplazar cabeceras que puedan mostrar información del servidor
+//   res.removeHeader('Server');
+//   res.removeHeader('X-Powered-By');
+//   next();
+// });
 
 /**
  * Serve static files from /browser
@@ -44,11 +44,11 @@ app.use(
     maxAge: '1y',
     index: false,
     redirect: false,
-    setHeaders: (res) => {
-      // Eliminar cabeceras también en archivos estáticos
-      res.removeHeader('Server');
-      res.removeHeader('X-Powered-By');
-    },
+    // setHeaders: (res) => {
+    //   // Eliminar cabeceras también en archivos estáticos
+    //   res.removeHeader('Server');
+    //   res.removeHeader('X-Powered-By');
+    // },
   })
 );
 
